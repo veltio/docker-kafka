@@ -50,6 +50,15 @@ if [ ! -z "$LOG_RETENTION_BYTES" ]; then
     echo "log retention bytes: $LOG_RETENTION_BYTES"
     sed -r -i "s/#(log.retention.bytes)=(.*)/\1=$LOG_RETENTION_BYTES/g" $KAFKA_HOME/config/server.properties
 fi
+if [ ! -z "$LOG_CLEANER_ENABLE" ]; then
+    echo "log cleaner enable: $LOG_CLEANER_ENABLE"
+    sed -r -i "s/[#]?(log.cleaner.enable)=(.*)/\1=$LOG_CLEANER_ENABLE/g" $KAFKA_HOME/config/server.properties
+fi
+# The following lines don't work because the original server.properties don't have this property in it
+# if [ ! -z "$LOG_CLEANUP_POLICY" ]; then
+#     echo "log cleanup policy: $LOG_CLEANUP_POLICY"
+#     sed -r -i "s/[#]?(log.cleanup.policy)=(.*)/\1=$LOG_CLEANUP_POLICY/g" $KAFKA_HOME/config/server.properties
+# fi
 
 # Configure the default number of log partitions per topic
 if [ ! -z "$NUM_PARTITIONS" ]; then
