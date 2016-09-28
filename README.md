@@ -74,8 +74,8 @@ https://registry.hub.docker.com/u/spotify/kafkaproxy/
 Build from Source
 ---
 
-    docker build -t spotify/kafka kafka/
-    docker build -t spotify/kafkaproxy kafkaproxy/
+    docker build -t veltio/kafka kafka/
+    docker build -t veltio/kafkaproxy kafkaproxy/
 
 Todo
 ---
