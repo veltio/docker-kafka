@@ -6,6 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV SCALA_VERSION 2.11
 ENV KAFKA_VERSION 0.8.2.1
 ENV KAFKA_HOME /opt/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION"
+ENV LOG_DIRS /var/kafka
 
 # Install Kafka, Zookeeper and other needed things
 RUN apt-get update && \
@@ -23,5 +24,7 @@ ADD supervisor/kafka.conf supervisor/zookeeper.conf /etc/supervisor/conf.d/
 
 # 2181 is zookeeper, 9092 is kafka
 EXPOSE 2181 9092
+
+VOLUME /var/kafka
 
 CMD ["supervisord", "-n"]
